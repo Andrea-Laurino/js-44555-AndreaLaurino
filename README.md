@@ -1,6 +1,3 @@
-# Curso de Coderhouse 
-comision 44555
-
 Tercer Entrega del proyecto final
 
 Decidi realizar un e-commerce, en cual realice:
@@ -8,3 +5,5 @@ Decidi realizar un e-commerce, en cual realice:
 - En el carro realice incrementos en la cantidad, sin repetir el producto en el carro y eliminacion del producto seleccionado. 
 - Realice un modo oscuro que permanece activo habiendo actualizado (localStorage).
 - Realice un Login que permanece activo habiendo actualizado (localStorage)
+
+
