@@ -37,6 +37,12 @@
         </header>
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="d-flex" >
+                <button class="btn-carrito btn-outline-light" type="submit" >
+                    <a class="carro bi-cart-fill me-1" href="#cart">Mi Carrito</a>
+                    <span class="badge bg-light text-black ms-1 rounded-pill" id="contadorCarrito"> 0 </span>
+                </button>
+            </div>
             <div class="container">
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Bel Paesaggio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -47,14 +53,15 @@
                         <li class="nav-item px-lg-4 "><a class="nav-link text-uppercase" href="nosotros.html">Nosotros</a></li> 
                     </ul>
                 </div>
+                <div class="nav">
+                    <button class="btn-carrito btn-outline-light" id="logout">
+                        Cerrar sesión
+                    </button>       
+            </div>
             </div>
            
         </nav>
-        <div class="nav">
-                <button class="btn-carrito btn-outline-light" id="logout">
-                    Cerrar sesión
-                </button>       
-        </div>
+       
         <main class="container">
             <div class=" container-login">
                 <h2 class="loguear">
@@ -76,18 +83,11 @@
                 </form>            
             </div>
         </main>
-        <div class="d-flex" >
-            <button class="btn-carrito btn-outline-light" type="submit" >
-                <a class="carro bi-cart-fill me-1" href="#cart">Mi Carrito</a>
-                <span class="badge bg-light text-black ms-1 rounded-pill" id="contadorCarrito"> 0 </span>
-            </button>
-        </div>
+      
 
 <section class="container-fluid content-section">
-    <button type="button" class="btn mt-3 fw-bold fs-6" id="btn-mayor">Ordenar A-Z</button>
-        <div class="container">    <!--aca se agregan los productos-->
-        </div>
-            <div class="container-productos">
+    <button type="button" class="btn mt-3 fw-bold fs-6" id ="btn-menor">Ordenar A-Z</button>
+            <div class="container-productos"><!-- aca se agregan los productos-->
             </div>
             <div class="container-fluid">
             <div class="row cart ">

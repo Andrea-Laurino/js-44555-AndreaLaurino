@@ -35,30 +35,16 @@
                     </button>
                 </div>    
             </section>    
-            <main class="container">
-                <div class=" container-login">
-                    <h2 class="loguear">
-                        Iniciar Sesión
-                    </h2>
-                    <form id="login">
-                        <label>
-                            <input type="text" placeholder="Usuario" id="usuario">
-                        </label>
-                        <label>
-                            <input type="text" placeholder="Contraseña" id="contrasenia">
-                        </label>
-                        <label>
-                            <input type="submit" value="Ingresar">
-                        </label>
-                        <p id="logint">
-                            El usuario o la contraseña son incorrectas.
-                        </p>
-                    </form>            
-                </div>
-            </main>
+           
         </header>
         <!-- Navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="d-flex" >
+                <button class="btn-carrito btn-outline-light" type="submit" >
+                    <a class="carro bi-cart-fill me-1" href="store.html">Mi Carrito</a>
+                    <span class="badge bg-light text-black ms-1 rounded-pill"></span>
+                </button>
+            </div>
             <div class="container">
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Bel Paesaggio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -68,12 +54,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Store</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros.html">Nosotros</a></li> 
                     </ul>
-                    <div class="d-flex" >
-                        <button class="btn-carrito btn-outline-light" type="submit" >
-                            <a class="carro bi-cart-fill me-1" href="#cart">Mi Carrito</a>
-                            <span class="badge bg-light text-black ms-1 rounded-pill"></span>
-                        </button>
-                    </div>
+                    
                 </div>
             </div>
            
@@ -83,6 +64,27 @@
                 </button>       
             </div>
         </nav>
+        <main class="container">
+            <div class=" container-login">
+                <h2 class="loguear">
+                    Iniciar Sesión
+                </h2>
+                <form id="login">
+                    <label>
+                        <input type="text" placeholder="Usuario" id="usuario">
+                    </label>
+                    <label>
+                        <input type="text" placeholder="Contraseña" id="contrasenia">
+                    </label>
+                    <label>
+                        <input type="submit" value="Ingresar">
+                    </label>
+                    <p id="logint">
+                        El usuario o la contraseña son incorrectas.
+                    </p>
+                </form>            
+            </div>
+        </main>
         <!--colocar un carrousel-->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">

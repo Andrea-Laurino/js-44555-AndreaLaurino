@@ -7,7 +7,7 @@ const logout = document.querySelector("#logout")
 const contenedorLogin = document.querySelector(".container-login")
 let totalElement = document.querySelector(".cart-total-title");
 const contadorCarrito = document.getElementById("contadorCarrito")
-const btnMayor = document.getElementById ("btn-mayor")
+
 
 
 
@@ -28,8 +28,8 @@ function productosAHtml ( array ) {
         card.className = "card h-70" 
         card.innerHTML = `
         <div class="shop-item" id="${productos.id}">
-        <span class="shop-item-title">${productos.nombre}</span>
-        <img class="shop-item-image" src="${productos.img}">
+            <span class="shop-item-title">${productos.nombre}</span>
+            <img class="shop-item-image" src="${productos.img}">
         <div class="shop-item-details">
             <span class="shop-item-price">$${productos.precio}</span>
             <button class="btn btn-primary shop-item-button" type="button">COMPRAR</button>
@@ -42,29 +42,8 @@ productosAHtml(productos)
 
 
 
-function productosAscendente(){ 
-    btnMayor.onclick = () => {
-    console.log ("me hicieron click")
-    //HASTA ACA TOMA BIEN EL ONCLICK
-
-//ESTO PARA MI ESTA MAL, PERO NO SE COMO DECIR QUE LOS PRODUCTOS QUE INSERTO ARRIBA SE ORDENEN A-Z
-    let productosAsc = [...productos]  
-    productosAsc.sort((a, b) => {
-    if ( a.nombre < b.nombre ){
-        return -1
-    } else if ( a.nombre > b.nombre){
-        return 1
-    } else {
-        return 0
-    }
-})
-}
-}
-
-productosAscendente(productos)
-
-
 let addBtns = document.querySelectorAll(".shop-item-button");
+
 addBtns=[...addBtns]
 
 const cartContainer = document.querySelector(".cart-select")
@@ -266,4 +245,28 @@ logout.onclick = () => {
     login.reset()
 }
 
+
+// funcion ordenar
+
+
+const btnMenor = document.getElementById ("btn-menor");
+let precio = document.querySelectorAll(".shop-item-price")    
+
+btnMenor.onclick = () =>{ 
+    console.log ("me hiciste click")
+        const productosOrdenados = [...productos].sort((a, b) => {
+            if ( a.nombre < b.nombre ){
+                return -1
+            } else if ( a.nombre > b.nombre){
+                return 1
+            } else {
+                return 0
+            }
+        })
+        console.log(productosOrdenados)
+} 
+
+  
+
+   
 
