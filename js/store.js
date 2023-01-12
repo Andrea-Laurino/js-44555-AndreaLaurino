@@ -246,7 +246,7 @@ logout.onclick = () => {
 }
 
 
-// funcion ordenar
+// funcion ordenar, no logro que se impriman en html
 
 
 const btnMenor = document.getElementById ("btn-menor");
