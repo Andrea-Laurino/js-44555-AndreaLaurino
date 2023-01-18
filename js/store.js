@@ -8,7 +8,7 @@ const contenedorLogin = document.querySelector(".container-login")
 
 const contadorCarrito = document.getElementById("contadorCarrito")
 
-
+let shoppingCartArray = JSON.parse(localStorage.getItem('shoppingCartArray')) || [];
 // INSERTAR PRODUCTOS A LA VENTA CON DOM
 
 fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
@@ -35,27 +35,31 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                 
             })
         })        
-.catch(() => console.log("lo hiciste mal!! Te dio error"))
+    .catch(() => console.log("lo hiciste mal!! Te dio error"))
 
   
 //ORDENAR DE MENOR PRECIO A MAYOR
-fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
+
+
+const btnCambio = document.getElementById("btn-menor")
+btnCambio.addEventListener('click', menorMayor)
+
+function menorMayor(){
+    fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
     .then( res => res.json())
-    .then( data => {
-         //obtengo mi array de productos de la api
-        let productosArray = data   
-                
-        //llamo al btn comprar
+    .then( data => cargarProductosOrdenados(data))
+    .catch(() => console.log("lo hiciste mal!! Te dio error"))        
+
+    function cargarProductosOrdenados (data) { 
+        //llamo al btn ordenar
         let ascBtn = document.querySelectorAll("#btn-menor");
-        
+        //obtengo mi array de productos de la api
+        let productosArray = data 
         //convierto de NodeList a array
         ascBtn = [... ascBtn]
-        
-                
         //ordenar productos 
-        ascBtn.forEach( ( btn ) => {
-            //console.log (ascBtn)
-            btn.addEventListener('click', () => {
+            ascBtn.forEach( ( btn ) => {
+                //console.log (ascBtn)
                 //llamo al div contenedor de productos para ordenarlo
                 let contenedorLleno = document.querySelector(".container-productos")
                 //vacio el div donde se insertan
@@ -72,41 +76,35 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                     }
                 })
                 //console.log (productosArray)
-
                 //imprimo en pantalla ordenado
                 productosArray.forEach( ( productos ) => {
-                        let card = document.createElement("div")
-                        card.innerHTML += `
-                        <div class="card h-70">
-                            <div class="shop-item" id="${productos.id}">
-                                    <span class="shop-item-title">${productos.name}</span>
-                                    <img class="shop-item-image" src="${productos.img}">
-                                <div class="shop-item-details">
-                                    <span class="shop-item-price">$${productos.price}</span>
-                                    <button id = "boton-${productos.id}" class="btn btn-primary shop-item-button" type="button">COMPRAR</button>
+                            let card = document.createElement("div")
+                            card.innerHTML += `
+                            <div class="card h-70">
+                                <div class="shop-item" id="${productos.id}">
+                                        <span class="shop-item-title">${productos.name}</span>
+                                        <img class="shop-item-image" src="${productos.img}">
+                                    <div class="shop-item-details">
+                                        <span class="shop-item-price">$${productos.price}</span>
+                                        <button id = "boton-${productos.id}" class="btn btn-primary shop-item-button" type="button">COMPRAR</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>`
-                    contenedorLleno.appendChild(card)
-                })
-                   
-            })
-        })         
+                            </div>`
+                        contenedorLleno.appendChild(card)
+                    })      
+            })            
+    }
 
-        
-    })           
-.catch(() => console.log("lo hiciste mal!! Te dio error"))
-    
+}
     
 
 // AGREGAR AL CARRITO
 fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
     .then( res => res.json())
-    .then( datos => {
+    .then( data => {
         //obtengo mi array de productos de la api
-        let productosArray = datos 
-        let shoppingCartArray = []
-        let total = 0
+        let productosArray = data 
+        //let total = 0
         
         //llamo al btn comprar
         let addBtns = document.querySelectorAll(".shop-item-button");
