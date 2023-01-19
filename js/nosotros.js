@@ -6,10 +6,34 @@ const errorLogin = document.querySelector("#logint")
 const logout = document.querySelector("#logout")
 const contenedorLogin = document.querySelector(".container-login")
 
+const inputName = document.querySelector("#input-name")
+const inputMail = document.querySelector("#input-mail")
+const inputTxt = document.querySelector("#input-txt")
+
+const errorName = document.querySelector("#name-error")
+const errorMail = document.querySelector("#mail-error")
+const errorTxt = document.querySelector("#txt-error")
+
+//================================== FORMULARIO CONSULTAS ==================================
+
+formLogin.onsubmit = (e) =>{
+    e.preventDefault()
+    for ( let i = 0; i < inputMail.length; i++){
+        let arroba = false
+              if (inputMail.value[i] === "@"){
+                  arroba = true;
+              }else{
+                  arroba != true;
+                  errorMail.style.display = "block"
+              }return arroba;
+    }
+
+}
 
 
 
-//modo oscuro
+
+//===================================== MODO OSCURO ========================================
 
 switchButton.addEventListener('click', () => {
     //toggle en el HTML body con la class 'light'   
@@ -35,7 +59,7 @@ if (localStorage.getItem("light-mode") === "true"){
 
 
 
-// login 
+//===================================== LOGUIN ============================================
 
 const subirAlLocal = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))

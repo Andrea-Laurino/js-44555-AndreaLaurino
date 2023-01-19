@@ -58,7 +58,7 @@
                 <h2 class="loguear">
                     Iniciar Sesión
                 </h2>
-                <form id="login">
+                <form class="form-loguin" id="login">
                     <label>
                         <input type="text" placeholder="Usuario" id="usuario">
                     </label>
@@ -71,30 +71,52 @@
                     <p id="logint">
                         El usuario o la contraseña son incorrectas.
                     </p>
-                </form>            
+                </form> 
+                <ul class="register"><a href="registro.html">Registrate</a></ul>              
             </div>
         </main>
 
-        
+        <section class="page-section clearfix mb-3">
+            <div class="container">
+                <div class="intro">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/consultas.jpg" alt="..." />
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">Cuida La Vida!</span>
+                            <span class="section-heading-lower">Consultanos Tus Dudas!</span>
+                        </h2>
+                        <p class="mb-3 ts-3">
+                            Hacenos una consulta, asi podremos despejarte
+                            <br>
+                            todas tus dudas.
+                            <br>
+                            Para consultas de Stock y Precios por Mayor
+                            <br>
+                            Envianos un mensaje por WhatsApp al +54 11 1234 5678
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>     
    
     <section class="container">
-        <div class="d-flex column form-bg">    
-            <form class="lista col-lg-6 col-sm-12"  action="">
+        <div class="d-flex row form-bg">    
+            <form class="lista col-lg-12 col-sm-12"  action="">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre"class="campo">
+                <input type="text" name="nombre"class="campo" id="input-name">
+                <p id="name-error">Corrige tu nombre!</p>
 
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido"class="campo">
-                
                 <label for="correo">Correo electrónico</label>  
-                <input type="email" name="correo"class="campo">
+                <input type="email" name="correo"class="campo" id="input-mail">
+                <p id="mail-error">Mail incorrecto!</p>
                 
-                <label for="asunto">Asunto</label>  
-                <input type="text" name="asunto" class="campo">
+                <label for="Telefono">Telefono  (Opcional)</label>
+                <input type="number" name="telefono" class="campo">
             </form>
-            <form class="lista col-lg-6 col-sm-12">    
-                <p>Mensaje</p>
-                <textarea name="mensaje" class="campo" cols="40" rows="10"></textarea>
+            <form class="lista col-lg-12 col-sm-12">    
+                <p>Consulta</p>
+                <p id="txt-error">Texto demasiado corto!</p>
+                <textarea name="mensaje" class="campo" cols="40" rows="10" id="input-txt"></textarea>
                 <p class="center-content pt-5">
                 <input type="submit" class="btn btn-send" value="Enviar Datos">
                 </p>  

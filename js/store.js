@@ -9,7 +9,8 @@ const contenedorLogin = document.querySelector(".container-login")
 const contadorCarrito = document.getElementById("contadorCarrito")
 
 let shoppingCartArray = JSON.parse(localStorage.getItem('shoppingCartArray')) || [];
-// INSERTAR PRODUCTOS A LA VENTA CON DOM
+
+//===================== INSERTAR PRODUCTOS A LA VENTA CON DOM =======================
 
 fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
     .then( res => res.json())
@@ -69,6 +70,7 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                         }else{
                             shoppingCartArray.push(actualProduct)
                         }
+                        localStorage.setItem("shoppingCartArray", JSON.stringify(shoppingCartArray))
                         //con DOM actualizo el carrito
                         imprimirItemSelect()
                         //actualizar valor total
@@ -79,85 +81,7 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                         eliminaItems() 
                     })
                 })
-            //fc que incrementa el carrito
-            function getTotal(){
-                        let sumTotal
-                        let total = shoppingCartArray.reduce( (sum, item)=>{
-                            sumTotal = sum + (item.quantity*item.price)
-                            return sumTotal
-                        }, 0);
-                        totalElement.innerText = `$${total}`
-            }
-                    
-            //fc que imprime item en el contenedor carrito
-            function imprimirItemSelect(){
-                        //para no repetir el mismo producto en carro
-                        cartContainer.innerHTML = ``; 
-                        
-                        shoppingCartArray.forEach(item =>{
-                            cartContainer.innerHTML += `
-                                <div class="cart-row">
-                                    <div class="cart-item cart-column-title">
-                                        <img class="cart-item-image" src=${item.img} width="100" height="100">
-                                        <span class="cart-item-title ">${item.name}</span>
-                                    </div>
-                                    <span class="cart-price cart-column">$${item.price}</span>
-                                    <div class="cart-quantity cart-column">
-                                        <input class="cart-quantity-input" min="1" type="number" value="${item.quantity}">
-                                        <button class="btn btn-danger" type="button">Eliminar</button>
-                                    </div>
-                                </div>`
-                                
-                        });
-                        localStorage.setItem('shoppingCartArray', JSON.stringify(shoppingCartArray))
-                        // actualizamos con la longitud del carrito.
-                        contadorCarrito.innerText = shoppingCartArray.length 
-                        eliminaItems()
-            }
-            //incrementar la cantidad de items
-            function actualizarNumbersItems(){
-                        let inputNumber = document.querySelectorAll('.cart-quantity-input');
-                        inputNumber = [...inputNumber]
-                        inputNumber.forEach(item => {
-                            item.addEventListener('click', event=>{
-                                    //busco nombre del producto elegido
-                                let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText
-                                let itemCantidad =parseInt(event.target.value);
-                                    //busco el obj con ese titulo
-                                let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
-                                    //console.log(itemElegido)
-                                itemElegido.quantity = itemCantidad;
-                                    //actualizar el precio con el incremento anterior
-                                getTotal()
-                            });
-                        });
-            }
-            //funcion de eliminar items
-            function eliminaItems(){
-                        let eliminaBtns = document.querySelectorAll ('.btn-danger');
-                        eliminaBtns = [...eliminaBtns]
-                        eliminaBtns.forEach (btn => {
-                            btn.addEventListener('click', event=>{
-                                //busco nombre del producto elegido usando la variable anterior
-                            let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText    
-                                //busco el obj con ese titulo
-                            let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
-                                //eliminar objeto   
-                                shoppingCartArray = shoppingCartArray.filter(item => item != itemElegido)
-                                //con DOM actualizo el carrito
-                                
-                        imprimirItemSelect()
-                        getTotal()
-                        actualizarNumbersItems()
-                            })
-                        })
-                        document.addEventListener ("DOMContentLoaded", () =>{
-                             if (localStorage.getItem('shoppingCartArray')){
-                                 shoppingCartArray = JSON.parse(localStorage.getItem('shoppingCartArray'))
-                                 imprimirItemSelect()
-                             }
-                        })
-            }
+            
     
             //ORDENAR DE MENOR PRECIO A MAYOR
             //llamo al btn ordenar
@@ -206,8 +130,7 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                     addBtns=[... addBtns]
                     //console.log(addBtns)
                     //llamo al div del carrito para imprimir lo seleccionado 
-                    const cartContainer = document.querySelector(".cart-select")
-                    let totalElement = document.querySelector(".cart-total-title");
+                    
                     addBtns.forEach(btn=>{
                             btn.addEventListener('click', event =>{
                                 //AGREGAR PRODUCTOS AL CARRO
@@ -234,6 +157,7 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                                 }else{
                                     shoppingCartArray.push(actualProduct)
                                 }
+                                localStorage.setItem("shoppingCartArray", JSON.stringify(shoppingCartArray))
                                 //con DOM actualizo el carrito
                                 imprimirItemSelect()
                                 //actualizar valor total
@@ -244,101 +168,92 @@ fetch('https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/productos')
                                 eliminaItems() 
                             })
                         })
-                        //fc que incrementa el carrito
-                        function getTotal(){
-                                    let sumTotal
-                                    let total = shoppingCartArray.reduce( (sum, item)=>{
-                                        sumTotal = sum + (item.quantity*item.price)
-                                        return sumTotal
-                                    }, 0);
-                                    totalElement.innerText = `$${total}`
-                        }                        
-                       //fc que imprime item en el contenedor carrito
-                        function imprimirItemSelect(){
-                                    //para no repetir el mismo producto en carro
-                                    cartContainer.innerHTML = ``; 
-                                    
-                                    shoppingCartArray.forEach(item =>{
-                                        cartContainer.innerHTML += `
-                                            <div class="cart-row">
-                                                <div class="cart-item cart-column-title">
-                                                    <img class="cart-item-image" src=${item.img} width="100" height="100">
-                                                    <span class="cart-item-title ">${item.name}</span>
-                                                </div>
-                                                <span class="cart-price cart-column">$${item.price}</span>
-                                                <div class="cart-quantity cart-column">
-                                                    <input class="cart-quantity-input" min="1" type="number" value="${item.quantity}">
-                                                    <button class="btn btn-danger" type="button">Eliminar</button>
-                                                </div>
-                                            </div>`
-                                            
-                                    });
-                                    localStorage.setItem('shoppingCartArray', JSON.stringify(shoppingCartArray))
-                                    // actualizamos con la longitud del carrito.
-                                    contadorCarrito.innerText = shoppingCartArray.length 
-                                    eliminaItems()
-                        }                        
-                        //incrementar la cantidad de items
-                        function actualizarNumbersItems(){
-                                    let inputNumber = document.querySelectorAll('.cart-quantity-input');
-                                    inputNumber = [...inputNumber]
-                                    inputNumber.forEach(item => {
-                                        item.addEventListener('click', event=>{
-                                                //busco nombre del producto elegido
-                                            let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText
-                                            let itemCantidad =parseInt(event.target.value);
-                                                //busco el obj con ese titulo
-                                            let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
-                                                //console.log(itemElegido)
-                                            itemElegido.quantity = itemCantidad;
-                                                //actualizar el precio con el incremento anterior
-                                            getTotal()
-                                        });
-                                    });
-                        }
-                        //funcion de eliminar items
-                        function eliminaItems(){
-                                    let eliminaBtns = document.querySelectorAll ('.btn-danger');
-                                    eliminaBtns = [...eliminaBtns]
-                                    eliminaBtns.forEach (btn => {
-                                        btn.addEventListener('click', event=>{
-                                            //busco nombre del producto elegido usando la variable anterior
-                                        let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText    
-                                            //busco el obj con ese titulo
-                                        let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
-                                            //eliminar objeto   
-                                            shoppingCartArray = shoppingCartArray.filter(item => item != itemElegido)
-                                            //con DOM actualizo el carrito
-                                            
-                                    imprimirItemSelect()
-                                    getTotal()
-                                    actualizarNumbersItems()
-                                        })
-                                    })
-                                    document.addEventListener ("DOMContentLoaded", () =>{
-                                        if (localStorage.getItem('shoppingCartArray')){
-                                            shoppingCartArray = JSON.parse(localStorage.getItem('shoppingCartArray'))
-                                            imprimirItemSelect()
-                                        }
-                                    })
-                        }   
+                       
                 })
             })
+            //fc que incrementa el carrito
+    function getTotal(){
+        let sumTotal
+        let total = shoppingCartArray.reduce( (sum, item)=>{
+            sumTotal = sum + (item.quantity*item.price)
+            return sumTotal
+        }, 0);
+        totalElement.innerText = `$${total}`
+    }
+            
+    //fc que imprime item en el contenedor carrito
+    function imprimirItemSelect(){
+                //para no repetir el mismo producto en carro
+                cartContainer.innerHTML = ``; 
+                
+                shoppingCartArray.forEach(item =>{
+                    cartContainer.innerHTML += `
+                        <div class="cart-row">
+                            <div class="cart-item cart-column-title">
+                                <img class="cart-item-image" src=${item.img} width="100" height="100">
+                                <span class="cart-item-title ">${item.name}</span>
+                            </div>
+                            <span class="cart-price cart-column">$${item.price}</span>
+                            <div class="cart-quantity cart-column">
+                                <input class="cart-quantity-input" min="1" type="number" value="${item.quantity}">
+                                <button class="btn btn-danger" type="button">Eliminar</button>
+                            </div>
+                        </div>`
+                        
+                });
+                localStorage.setItem('shoppingCartArray', JSON.stringify(shoppingCartArray))
+                // actualizamos con la longitud del carrito.
+                contadorCarrito.innerText = shoppingCartArray.length 
+                eliminaItems()
+    }
+    //incrementar la cantidad de items
+    function actualizarNumbersItems(){
+                let inputNumber = document.querySelectorAll('.cart-quantity-input');
+                inputNumber = [...inputNumber]
+                inputNumber.forEach(item => {
+                    item.addEventListener('click', event=>{
+                            //busco nombre del producto elegido
+                        let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText
+                        let itemCantidad =parseInt(event.target.value);
+                            //busco el obj con ese titulo
+                        let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
+                            //console.log(itemElegido)
+                        itemElegido.quantity = itemCantidad;
+                            //actualizar el precio con el incremento anterior
+                        getTotal()
+                    });
+                });
+    }
+    //funcion de eliminar items
+    function eliminaItems(){
+                let eliminaBtns = document.querySelectorAll ('.btn-danger');
+                eliminaBtns = [...eliminaBtns]
+                eliminaBtns.forEach (btn => {
+                    btn.addEventListener('click', event=>{
+                        //busco nombre del producto elegido usando la variable anterior
+                    let itemTitle = event.target.parentElement.parentElement.childNodes[1].innerText    
+                        //busco el obj con ese titulo
+                    let itemElegido = shoppingCartArray.find( item => item.name === itemTitle)
+                        //eliminar objeto   
+                        shoppingCartArray = shoppingCartArray.filter(item => item != itemElegido)
+                        //con DOM actualizo el carrito
+                        
+                imprimirItemSelect()
+                getTotal()
+                actualizarNumbersItems()
+                    })
+                })
+                document.addEventListener ("DOMContentLoaded", () =>{
+                     if (localStorage.getItem('shoppingCartArray')){
+                         shoppingCartArray = JSON.parse(localStorage.getItem('shoppingCartArray'))
+                         imprimirItemSelect()
+                     }
+                })
+    }
         })        
     .catch(() => console.log("lo hiciste mal!! Te dio error"))
 
-  
-
-
-
-
-
-
-
-
-   
-
-//==================================modo oscuro==================================
+//================================== MODO OSCURO ==================================
 
 switchButton.addEventListener('click', () => {
     //toggle en el HTML body con la class 'light'
@@ -362,7 +277,7 @@ if (localStorage.getItem("light-mode") === "true"){
     switchButton.classList.remove('active');
 }
 
-//==================================login==================================
+//==================================== LOGUIN ==================================
 
 const subirAlLocal = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))

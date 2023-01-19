@@ -20,12 +20,23 @@
   justify-content:flex-end;
 }
 .loguear{
+  
   --bs-text-opacity: 1;
     color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity))
 
 }
 
+
+.form-loguin{
+  background-color: #867761ba;
+  border: 1px solid #764915;
+  width: 100%;
+  color: #e6a756;
+  padding: 15px;
+  font-size: 15px;
+}
 .container-login {
+  background-color:#867761ba; 
   margin: 20px;
   padding: 10px;
   border: 1px solid #764915;
@@ -43,7 +54,7 @@
 
 input {
   margin: 10px 0px;
-  color: rgb(84, 49, 3);
+  color: #543103;
   background-color: #b9955f;
 }
 
@@ -213,10 +224,26 @@ background-color: rgba(243, 173, 93, 0.9);
   width: auto; 
   
 }
+.form-bg{
+  background-color: #867761ba;
+  width: 50%;
+  margin-left: 400px;
+}
 
+#name-error{
+  display: none;
+}
+
+#mail-error{
+  display: none;
+}
+
+#txt-error{
+  display: none;
+}
 
 form {
-  background-color: #867761ba;
+  /* background-color: #867761ba; */
   width: 100%;
   color: #e6a756;
   padding: 15px;
@@ -247,6 +274,7 @@ label{
   text-shadow: #fff;
   padding: 10px;
 }
+
 .address{
   color:#e6a756;
   font-size: large;
@@ -264,7 +292,7 @@ label{
   display: inline-block;
   padding: 2px;
   text-decoration: none;
-  color:#1c0e09b8;
+  color:#1c0e09c7;
   background-color: #e6a756;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.87);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.363);
@@ -275,10 +303,10 @@ label{
 }
 
 .btn-send{
-  font-weight: 600;
+  font-weight: 900;
   background-color: #e6a756;
   border-color: #db973e;
-  font-size: 20px;
+  font-size: 18px;
   padding: 20px;
 }
 .btn:first-child:hover, :not(.btn-check)+.btn:hover {
@@ -296,7 +324,7 @@ label{
 .campo{
   border: solid 1px #ccc;
   padding: 10px;
-  color:#999;
+  color: #502f04;
 }
 .campo:focus{
   border-color: #c55f05;
@@ -309,7 +337,7 @@ label{
 
 .btn-primary {
   color: rgb(238, 238, 238);
-  background-color: #56CCF2;
+  background-color:#db732d;
   border: none;
   border-radius: .3em;
   font-weight: bold;
@@ -757,6 +785,7 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  background-color: #b9955f;
 }
 
 button,
@@ -2915,12 +2944,12 @@ textarea.form-control-lg {
   background-color: #e6a756;
   border-color: #e6a756;
 }
-.form-check-input:checked[type=checkbox] {
+/* .form-check-input:checked[type=checkbox] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
 }
 .form-check-input:checked[type=radio] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
-}
+} */
 .form-check-input[type=checkbox]:indeterminate {
   background-color: #e6a756;
   border-color: #e6a756;
@@ -11999,3 +12028,5 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+

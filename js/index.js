@@ -9,7 +9,7 @@ const contenedorLogin = document.querySelector(".container-login")
 
 
 
-//modo oscuro
+//===================================== MODO OSCURO ========================================
 
 switchButton.addEventListener('click', () => {
     //toggle en el HTML body con la class 'light'   
@@ -35,7 +35,7 @@ if (localStorage.getItem("light-mode") === "true"){
 
 
 
-// login 
+//===================================== LOGUIN ============================================
 
 const subirAlLocal = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))
@@ -96,7 +96,7 @@ logout.onclick = () => {
 }
 
 
-//inicializacion de carrousel SWIPER
+//=============================== CARROUSEL CON SWIPER ===================================== 
 
 let swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,
