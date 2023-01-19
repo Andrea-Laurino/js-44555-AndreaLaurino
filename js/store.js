@@ -288,27 +288,36 @@ const bajarDelLocal = (key) => {
     return JSON.parse(clave)
 }
 
-const datosUsuario = {
-    user: "andrea",
-    password: "lopez123"
-}
 
 
 login.onsubmit = ( event ) => {
     event.preventDefault()
-    if ( inputUser.value === datosUsuario.user && inputPass.value === datosUsuario.password ) {
-        subirAlLocal("login", true)
-        contenedorLogin.style.display = "none"
-        logout.style.display = "block"
-    } else {
-        errorLogin.style.display = "block"
-    }
-    swal({
-        icon: "success",
-        title: "Bienvenido a BEL PAESAGGIO",
-        buttons: false,
-        timer: 2500,
-      });
+        fetch("https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/usuarios")
+        .then( res => res.json())
+        .then( data => {
+            let usuarios = data
+            // console.log(usuarios)
+            let entrar = false
+            usuarios.forEach(element => {
+                // console.log(element.name)
+                if ( inputUser.value === element.name && inputPass.value === element.password){
+                    subirAlLocal("login", true)
+                    entrar = true
+                    contenedorLogin.style.display = "none"  
+                    logout.style.display = "block"
+                    swal({
+                        icon: "success",
+                        title: "Bienvenido a BEL PAESAGGIO",
+                        text: "Empeza a disfrutar de nuestra web",
+                        buttons: false,
+                        timer: 3500,
+                    });
+                }else {        
+                    errorLogin.style.display = "block"
+                }
+                
+            });              
+        })    
 }
 
 

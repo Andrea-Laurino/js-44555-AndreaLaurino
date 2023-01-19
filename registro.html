@@ -31,17 +31,17 @@
     <section class="registro">
         <form action="" method="POST" id="form">
             <div class="form">
-                <h1 class="title">Registro</h1>
+                <h1>Registro</h1>
                 <div class="grupo">
-                    <input type="text" name="" id="name"><span class="barra"></span> 
+                    <input type="text" name="" required id="name"><span class="barra"></span> 
                     <label for="">Nombre</label>
                 </div>
                 <div class="grupo">
-                    <input type="email" name="" id="email"><span class="barra"></span>
+                    <input type="email" name="" required id="email"><span class="barra"></span>
                     <label for="">Email</label>
                 </div>
                 <div class="grupo">
-                    <input type="password" name="" id="password"><span class="barra"></span>
+                    <input type="password" name="" required id="password"><span class="barra"></span>
                     <label for="">Password</label>
                 </div>
                 <button type="submit">Suscribite</button>
@@ -49,7 +49,8 @@
             </div>
         </form>
     </section>
-    
+    <!-- Core theme JS-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/registro.js"></script>
 </body>
 </html>

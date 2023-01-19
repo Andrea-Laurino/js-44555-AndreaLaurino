@@ -99,28 +99,32 @@
             </div>
         </section>     
    
-    <section class="container">
+    <section class="container-fluid">
         <div class="d-flex row form-bg">    
-            <form class="lista col-lg-12 col-sm-12"  action="">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre"class="campo" id="input-name">
-                <p id="name-error">Corrige tu nombre!</p>
-
-                <label for="correo">Correo electrónico</label>  
-                <input type="email" name="correo"class="campo" id="input-mail">
-                <p id="mail-error">Mail incorrecto!</p>
-                
-                <label for="Telefono">Telefono  (Opcional)</label>
-                <input type="number" name="telefono" class="campo">
-            </form>
-            <form class="lista col-lg-12 col-sm-12">    
-                <p>Consulta</p>
-                <p id="txt-error">Texto demasiado corto!</p>
-                <textarea name="mensaje" class="campo" cols="40" rows="10" id="input-txt"></textarea>
-                <p class="center-content pt-5">
-                <input type="submit" class="btn btn-send" value="Enviar Datos">
-                </p>  
-            </form>
+             <!-- <section class="registro"> -->
+                <form action="" method="POST" id="form">
+                    <div class="form">
+                        <h1>Consulta</h1>
+                        <div class="grupo">
+                            <input type="text" name=""  id="name"><span class="barra"></span> 
+                            <label for="">Nombre</label>
+                        </div>
+                        <div class="grupo">
+                            <input type="email" name=""  id="mail"><span class="barra"></span>
+                            <label for="">Email</label>
+                        </div>
+                        <div class="grupo">
+                            <input type="text" name=""  id="asunto"><span class="barra"></span>
+                            <label for="">Asunto</label>
+                        </div>
+                        <p>Cual es tu consulta?</p>
+                        <textarea name="mensaje" class="campo" cols="40" rows="10" id="consulta"></textarea>
+                        <p class="center-content pt-5">
+                        <input type="submit" class="btn btn-send" value="Enviar Datos">
+                        </p> 
+                        <p class="warnings" id="warnings"></p>
+                    </div>
+                </form>
         </div>    
     </section> 
 
@@ -162,11 +166,12 @@
             <p class="m-0 small row justify-content-right">Copyright &copy; Andrea Laurino 2022</p>
         </div>
     </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
+        <!-- Bootstrap core JS
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script> -->
 
+        <!-- Core theme JS-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="js/nosotros.js"></script>
         
     </body>

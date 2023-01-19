@@ -26,6 +26,15 @@
 
 }
 
+.form {
+  width: 100%;
+  margin: auto;
+}
+
+form .grupo {
+  position: relative;
+  margin: 35px;
+}
 
 .form-loguin{
   background-color: #867761ba;
@@ -221,7 +230,7 @@ background-color: rgba(243, 173, 93, 0.9);
 .lista {
   display: flex;
   flex-direction: column;
-  width: auto; 
+  width: 100%; 
   
 }
 .form-bg{
@@ -273,6 +282,19 @@ label{
   color: #e6a756;
   text-shadow: #fff;
   padding: 10px;
+}
+
+.invalido{
+  border: 2px solid red;
+}
+.valido{
+  border: 2px solid yellowgreen;
+}
+
+.mensajeInvalido{
+  text-align: center;
+  color:red;
+  font-size: 15px;
 }
 
 .address{

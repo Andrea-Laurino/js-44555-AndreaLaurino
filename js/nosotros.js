@@ -6,29 +6,57 @@ const errorLogin = document.querySelector("#logint")
 const logout = document.querySelector("#logout")
 const contenedorLogin = document.querySelector(".container-login")
 
-const inputName = document.querySelector("#input-name")
-const inputMail = document.querySelector("#input-mail")
-const inputTxt = document.querySelector("#input-txt")
-
-const errorName = document.querySelector("#name-error")
-const errorMail = document.querySelector("#mail-error")
-const errorTxt = document.querySelector("#txt-error")
+const nombre = document.getElementById("name")
+const mail =  document.getElementById("mail")
+const consulta =  document.getElementById("consulta")
+const asunto =  document.getElementById("asunto")
+const formConsulta =  document.getElementById("form")
+const parrafo = document.getElementById("warnings")
 
 //================================== FORMULARIO CONSULTAS ==================================
 
-formLogin.onsubmit = (e) =>{
-    e.preventDefault()
-    for ( let i = 0; i < inputMail.length; i++){
-        let arroba = false
-              if (inputMail.value[i] === "@"){
-                  arroba = true;
-              }else{
-                  arroba != true;
-                  errorMail.style.display = "block"
-              }return arroba;
-    }
 
-}
+formConsulta.addEventListener("submit", e => {
+    e.preventDefault()
+    let warnings = ""
+    let entrar = false
+    
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
+    parrafo.innerHTML =""
+
+    if(nombre.value.length < 4){
+        console.log(nombre.value.length )
+        
+        warnings += "El nombre no es valido<br>"
+        entrar = true
+        
+    }             
+    if(!regexEmail.test(mail.value)){        
+        warnings +=  "El email no es valido <br>" 
+        entrar = true        
+    }
+    if(asunto.value.length < 6){
+        warnings += "El asunto no es valido<br>"
+        entrar = true
+    
+    } 
+    if(consulta.value.length > 20 ){
+        warnings += "La consulta es muy extensa<br>"
+           entrar = true
+    }
+    if(entrar){
+        parrafo.innerHTML = warnings
+    }else{
+        swal({
+            icon: "success",
+            title: "Enviado",
+            text: "Te responderemos a la brevedad",
+            buttons: false,
+            timer: 3500,
+        });
+        
+    }
+})
 
 
 
@@ -61,6 +89,7 @@ if (localStorage.getItem("light-mode") === "true"){
 
 //===================================== LOGUIN ============================================
 
+
 const subirAlLocal = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))
 }
@@ -70,23 +99,39 @@ const bajarDelLocal = (key) => {
     return JSON.parse(clave)
 }
 
-const datosUsuario = {
-    user: "andrea",
-    password: "lopez123"
-}
 
 
 login.onsubmit = ( event ) => {
     event.preventDefault()
-    if ( inputUser.value === datosUsuario.user && inputPass.value === datosUsuario.password ) {
-        subirAlLocal("login", true)
-        contenedorLogin.style.display = "none"  
-        logout.style.display = "block"      
-    } else {        
-        errorLogin.style.display = "block"
-    }
+        fetch("https://63c415a98067b6bef6d337d0.mockapi.io/belAPI/usuarios")
+        .then( res => res.json())
+        .then( data => {
+            let usuarios = data
+            // console.log(usuarios)
+            let entrar = false
+            usuarios.forEach(element => {
+                // console.log(element.name)
+                if ( inputUser.value === element.name && inputPass.value === element.password){
+                    subirAlLocal("login", true)
+                    entrar = true
+                    contenedorLogin.style.display = "none"  
+                    logout.style.display = "block"
+                    swal({
+                        icon: "success",
+                        title: "Bienvenido a BEL PAESAGGIO",
+                        text: "Empeza a disfrutar de nuestra web",
+                        buttons: false,
+                        timer: 3500,
+                    });
+                }else {        
+                    errorLogin.style.display = "block"
+                }
+                
+            });              
+        })    
 }
    
+
 
 //para seguir conectado aunque se cierre el navegador
 
@@ -111,5 +156,4 @@ logout.onclick = () => {
     validarLogin(bajarDelLocal("login"))
     login.reset()
 }
-
 
